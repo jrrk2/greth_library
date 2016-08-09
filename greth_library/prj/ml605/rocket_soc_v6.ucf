@@ -1,0 +1,78 @@
+###############################################################################
+# Define Device, Package And Speed Grade
+###############################################################################
+CONFIG PART = XC6VLX240T-FF1156-1;
+
+NET "i_sclk_p" TNM_NET = TNM_SysClk;
+TIMESPEC "TS_SysClk" = PERIOD "TNM_SysClk" 5 ns ;
+NET  "i_sclk_p"   LOC = "J9";
+NET  "i_sclk_p"   IOSTANDARD = LVDS_25;
+NET  "i_sclk_n"   LOC = "H9";
+NET  "i_sclk_n"   IOSTANDARD = LVDS_25;
+
+# button "Center"
+NET "i_rst" LOC = G26;
+NET "i_rst" CLOCK_DEDICATED_ROUTE = "FALSE";
+# jumpers
+
+
+# UART1 interface
+#NET "i_uart1_ctsn" LOC = T23;
+NET "i_uart1_rd"   LOC = J24;
+#NET "o_uart1_rtsn" LOC = T24;
+NET "o_uart1_td"   LOC = J25;
+
+# GPIO
+NET "i_int_clkrf"  LOC = D22 | IOSTANDARD=LVCMOS18 | PULLDOWN | SLEW=SLOW | DRIVE=2;   # DIP-0. Generate ADC clock internally = sys_clk/4
+NET "i_dip[1]"  LOC = C22 | IOSTANDARD=LVCMOS18 | PULLDOWN | SLEW=SLOW | DRIVE=2;   # DIP-1
+NET "i_dip[2]"  LOC = L21 | IOSTANDARD=LVCMOS18 | PULLDOWN | SLEW=SLOW | DRIVE=2;   # DIP-2
+NET "i_dip[3]"  LOC = L20 | IOSTANDARD=LVCMOS18 | PULLDOWN | SLEW=SLOW | DRIVE=2;   # DIP-3
+#NET "i_dip[4]"  LOC = C18;   # DIP-4
+#NET "i_dip[5]"  LOC = B18;   # DIP-5
+#NET "i_dip[6]"  LOC = K22;   # DIP-6
+#NET "i_dip[7]"  LOC = K21;   # DIP-7
+
+
+# User's LEDs:
+NET "o_led[0]" LOC = AC22;
+NET "o_led[1]" LOC = AC24;
+NET "o_led[2]" LOC = AE22;
+NET "o_led[3]" LOC = AE23;
+NET "o_led[4]" LOC = AB23;
+NET "o_led[5]" LOC = AG23;
+NET "o_led[6]" LOC = AE24;
+NET "o_led[7]" LOC = AD24;
+
+# Ethernet signals
+NET "i_gmiiclk_p"             LOC = "H6";
+NET "i_gmiiclk_n"             LOC = "H5";
+NET "o_egtx_clk"              LOC = "AH12";   ## 14  on U80
+NET "i_etx_clk"               LOC = "AD12";   ## 10  on U80
+NET "i_erx_clk"               LOC = "AP11";   ## 7   on U80
+NET "i_erxd(0)"               LOC = "AN13";   ## 3   on U80
+NET "i_erxd(1)"               LOC = "AF14";   ## 128 on U80
+NET "i_erxd(2)"               LOC = "AE14";   ## 126 on U80
+NET "i_erxd(3)"               LOC = "AN12";   ## 125 on U80
+NET "i_erx_dv"                LOC = "AM13";   ## 4   on U80
+NET "i_erx_er"                LOC = "AG12";   ## 9   on U80
+NET "i_erx_col"               LOC = "AK13";   ## 114 on U80
+NET "i_erx_crs"               LOC = "AL13";   ## 115 on U80
+NET "i_emdint"                LOC = "AH14";   ## 32  on U80
+NET "o_etxd(0)"               LOC = "AM11";   ## 18  on U80
+NET "o_etxd(1)"               LOC = "AL11";   ## 19  on U80
+NET "o_etxd(2)"               LOC = "AG10";   ## 20  on U80
+NET "o_etxd(3)"               LOC = "AG11";   ## 24  on U80
+NET "o_etx_en"                LOC = "AJ10";   ## 16  on U80
+NET "o_etx_er"                LOC = "AH10";   ## 13  on U80
+NET "o_emdc"                  LOC = "AP14";   ## 35  on U80
+NET "io_emdio"                LOC = "AN14";   ## 33  on U80
+NET "o_erstn"                 LOC = "AH13";   ## 36  on U80
+
+NET "i_gmiiclk_p"            TNM_NET = "clk_gtx";
+TIMESPEC "TS_gtx_clk"      = PERIOD "clk_gtx" 8000 ps HIGH 50 %;
+
+NET "i_erx_clk"              TNM_NET  = "clk_rx";
+TIMESPEC "TS_rx_clk"       = PERIOD "clk_rx" 40000 ps HIGH 50 %;
+
+NET "i_etx_clk"              TNM_NET  = "clk_tx_mac";
+TIMESPEC "TS_tx_clk_mii"   = PERIOD "clk_tx_mac" 40000 ps HIGH 50 %;

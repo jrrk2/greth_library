@@ -1,0 +1,196 @@
+
+{
+  'GlobalSettings':{
+    'SimEnable':false,
+    'GUI':'false',
+    'ScriptFile':''},
+  'Services':[
+    {
+      'Class':'BusClass',
+      'Instances':[
+        {
+          'Name':'axi0',
+          'Attr':[
+            ['LogLevel',0x3],
+            [
+              'MapList',
+              [
+                'bootrom0',
+                'fwimage0',
+                'sram0',
+                'gpio0',
+                'uart0',
+                'irqctrl0',
+                'gnss0',
+                'gptmr0',
+                'pnp0',
+                'dsu0',
+                'greth0']]]}]},
+    {
+      'Class':'CmdParserServiceClass',
+      'Instances':[
+        {
+          'Name':'cmd0',
+          'Attr':[
+            ['LogLevel',0x4],
+            ['Console','console0'],
+            ['Tap','edcltap'],
+            ['Loader','loader0'],
+            [
+              'History',
+              [
+                'csr CPUID[
+                  
+                  
+                  
+                  
+                  
+                  
+                  D[
+                    
+                    
+                    
+                    
+                    
+                    
+                    D',
+                    'csr MTIME',
+                    'read 0xfffff004 128',
+                    'write 0x80000000 4 0xaa',
+                    'read_csr CPUID',
+                    'write 0x80000000 4 0aa',
+                    'read 0xfffff000 128',
+                    'loadelf',
+                    'csr MCPUID',
+                    'help',
+                    'csr CPUID',
+                    'csr',
+                    'loadelf helloworld',
+                    'read 0x80000000 4',
+                    '',
+                    'read 0 4',
+                    'write 0x80000000 4 0xff',
+                    'write 0x80000000 4 0x55',
+                    'write 0x80000000 4 0x00',
+                    'read 0x80040000 32',
+                    'exit']],
+                ['HistorySize',0x40],
+                [
+                  'ListCSR',
+                  [
+                    ['MCPUID',0xf00,'CPU description'],
+                    ['MRESET',0x782],
+                    ['MTIME',0x701,'Machine wall-clock time.'],
+                    ['MEPC',0x341,'Machine exception program counter']]],
+                [
+                  'RegNames',
+                  [
+                    ['zero',0x0],
+                    ['ra',0x1],
+                    ['sp',0x2],
+                    ['gp',0x3],
+                    ['tp',0x4],
+                    ['t0',0x5],
+                    ['t1',0x6],
+                    ['t2',0x7],
+                    ['s0',0x8],
+                    ['s1',0x9],
+                    ['a0',0xa],
+                    ['a1',0xb],
+                    ['a2',0xc],
+                    ['a3',0xd],
+                    ['a4',0xe],
+                    ['a5',0xf],
+                    ['a6',0x10],
+                    ['a7',0x11],
+                    ['s2',0x12],
+                    ['s3',0x13],
+                    ['s4',0x14],
+                    ['s5',0x15],
+                    ['s6',0x16],
+                    ['s7',0x17],
+                    ['s8',0x18],
+                    ['s9',0x19],
+                    ['s10',0x1a],
+                    ['s11',0x1b],
+                    ['t3',0x1c],
+                    ['t4',0x1d],
+                    ['t5',0x1e],
+                    ['t6',0x1f],
+                    ['pc',0x20],
+                    ['npc',0x21]]]]}]},
+        {
+          'Class':'ConsoleServiceClass',
+          'Instances':[
+            {
+              'Name':'console0',
+              'Attr':[
+                ['LogLevel',0x4],
+                ['Enable',true],
+                ['Consumer','cmd0'],
+                ['LogFile','test.log'],
+                ['Serial','uart0']]}]},
+        {
+          'Class':'EdclServiceClass',
+          'Instances':[
+            {
+              'Name':'edcltap',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['Transport','udpedcl'],
+                ['seq_cnt',0x1]]}]},
+        {
+          'Class':'ElfLoaderServiceClass',
+          'Instances':[
+            {
+              'Name':'loader0',
+              'Attr':[
+                ['LogLevel',0x4],
+                ['Tap','edcltap'],
+                ['VerifyEna',true]]}]},
+        {
+          'Class':'MemorySimClass',
+          'Instances':[
+            {
+              'Name':'bootrom0',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['InitFile','../../../rocket_soc/fw_images/bootimage.hex'],
+                ['ReadOnly',true],
+                ['BaseAddress',0x0],
+                ['Length',0x2000]]},
+            {
+              'Name':'fwimage0',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['InitFile','../../../rocket_soc/fw_images/fwimage.hex'],
+                ['ReadOnly',true],
+                ['BaseAddress',0x100000],
+                ['Length',0x40000]]},
+            {
+              'Name':'sram0',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['InitFile','../../../rocket_soc/fw_images/fwimage.hex'],
+                ['ReadOnly',false],
+                ['BaseAddress',0x10000000],
+                ['Length',0x80000]]}]},
+        {
+          'Class':'UdpServiceClass',
+          'Instances':[
+            {
+              'Name':'udpboard',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['Timeout',0x190],
+                ['BlockingMode',true],
+                ['HostIP','192.168.0.53'],
+                ['BoardIP','192.168.0.48']]},
+            {
+              'Name':'udpedcl',
+              'Attr':[
+                ['LogLevel',0x1],
+                ['Timeout',0x3e8],
+                ['BlockingMode',true],
+                ['HostIP','192.168.0.53'],
+                ['BoardIP','192.168.0.51']]}]}]}

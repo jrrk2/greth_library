@@ -1,0 +1,8 @@
+*.sdf
+*.opensdf
+*.suo
+*.err
+Debug
+Release
+test.log
+src/gui_plugin
