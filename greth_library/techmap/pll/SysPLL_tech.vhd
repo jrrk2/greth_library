@@ -31,27 +31,12 @@ entity SysPLL_tech is
   (
     --! Reset value. Active high.
     i_reset           : in     std_logic;
-    --! @brief ADC source select
-    --! @details
-    --!    <table>
-    --!    <tr><th> Value </th>
-    --!        <th> Description </th></tr>
-    --!    <tr> <td> 0 </td> 
-    --!         <td>External ADC clock (Real RF front-end).</td></tr>
-    --!    <tr> <td> 1 </td> 
-    --!         <td>Disable external ADC/enable internal ADC simulation.</td></tr>
-    --!    </table>
-    i_int_clkrf       : in     std_logic;
     --! Differential clock input positive
     i_clkp            : in     std_logic;
     --! Differential clock input negative
     i_clkn            : in     std_logic;
-    --! External ADC clock
-    i_clk_adc         : in     std_logic;
     --! System Bus clock 100MHz/40MHz (Virtex6/Spartan6)
     o_clk_bus         : out    std_logic;
-    --! ADC simulation clock = 26MHz (default).
-    o_clk_adc         : out    std_logic;
     --! PLL locked status.
     o_locked          : out    std_logic;
     --rmii clocks
@@ -104,21 +89,5 @@ begin
 
 
   o_clk_bus <= pll_clk_bus;
-
-  ------------------------------------
-  -- Clock mux2:
-  --     pass input ADC clock directly to output when i_int_clkrf=0
-  --     otherwise pass sim_adc = bus/4 (for the self-test purposes without RF)
-  buf1 : bufgmux_tech generic map
-  (
-    tech => tech,
-    tmode_always_ena => tmode_always_ena
-  )port map 
-  (
-    O  => o_clk_adc,
-    I1 => i_clk_adc,
-    I2 => adc_clk_unbuf,
-    S  => i_int_clkrf
-  );
 
 end;

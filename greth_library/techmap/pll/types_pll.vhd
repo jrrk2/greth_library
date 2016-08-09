@@ -37,12 +37,9 @@ package types_pll is
     );
     port (
     i_reset           : in     std_logic;
-    i_int_clkrf       : in     std_logic;
     i_clkp            : in     std_logic;
     i_clkn            : in     std_logic;
-    i_clk_adc         : in     std_logic;
     o_clk_bus         : out    std_logic;
-    o_clk_adc         : out    std_logic;
     o_clk_50          : out    std_logic;
     o_clk_50_quad     : out    std_logic;
     o_locked          : out    std_logic);

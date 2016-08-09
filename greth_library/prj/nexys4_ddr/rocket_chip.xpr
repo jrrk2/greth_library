@@ -98,13 +98,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../techmap/bufg/bufgmux_fpga.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="techmap"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../techmap/bufg/ibuf_inferred.vhd">
         <FileInfo>
           <Attr Name="Library" Val="techmap"/>
@@ -120,13 +113,6 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../../rocketlib/eth/eth_axi_mst.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../rocketlib/types_rocket.vhd">
         <FileInfo>
           <Attr Name="Library" Val="rocketlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -161,16 +147,16 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../techmap/bufg/bufgmux_tech.vhd">
+      <File Path="$PPRDIR/../../techmap/bufg/igdsbuf_a7.vhd">
         <FileInfo>
           <Attr Name="Library" Val="techmap"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../techmap/bufg/igdsbuf_a7.vhd">
+      <File Path="$PPRDIR/../../rocketlib/types_rocket.vhd">
         <FileInfo>
-          <Attr Name="Library" Val="techmap"/>
+          <Attr Name="Library" Val="rocketlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -189,13 +175,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../gnsslib/types_gnss.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="gnsslib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../techmap/pll/SysPLL_tech.vhd">
         <FileInfo>
           <Attr Name="Library" Val="techmap"/>
@@ -210,35 +189,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../rocketlib/misc/nasti_uart.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../rocketlib/misc/nasti_pnp.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../rocketlib/misc/nasti_irqctrl.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../rocketlib/misc/nasti_gpio.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../rocketlib/misc/nasti_dsu.vhd">
         <FileInfo>
           <Attr Name="Library" Val="rocketlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -248,13 +199,6 @@
       <File Path="$PPRDIR/../../techmap/bufg/iobuf_tech.vhd">
         <FileInfo>
           <Attr Name="Library" Val="techmap"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../rocketlib/tilelink/htifctrl.vhd">
-        <FileInfo>
-          <Attr Name="Library" Val="rocketlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -294,7 +238,23 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../gnsslib/sync/types_sync.vhd">
+      <File Path="$PPRDIR/../../techmap/bufg/bufgmux_fpga.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="techmap"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../techmap/bufg/bufgmux_tech.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="techmap"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../gnsslib/types_gnss.vhd">
         <FileInfo>
           <Attr Name="Library" Val="gnsslib"/>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -302,9 +262,49 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../techmap/pll/SysPLL_a7.vhd">
+      <File Path="$PPRDIR/../../rocketlib/tilelink/htifctrl.vhd">
         <FileInfo>
-          <Attr Name="Library" Val="techmap"/>
+          <Attr Name="Library" Val="rocketlib"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../rocketlib/misc/nasti_uart.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="rocketlib"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../rocketlib/misc/nasti_pnp.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="rocketlib"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../rocketlib/misc/nasti_irqctrl.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="rocketlib"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../rocketlib/misc/nasti_dsu.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="rocketlib"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../gnsslib/sync/types_sync.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="gnsslib"/>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -397,9 +397,7 @@
     </Run>
     <Run Id="SysPLL_a7_synth_1" Type="Ft3:Synth" SrcSet="SysPLL_a7" Part="xc7a100tcsg324-1" ConstrsSet="SysPLL_a7" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/SysPLL_a7_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -421,9 +419,7 @@
     </Run>
     <Run Id="SysPLL_a7_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="SysPLL_a7" Description="Vivado Implementation Defaults" SynthRun="SysPLL_a7_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

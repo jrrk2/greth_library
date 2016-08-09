@@ -50,7 +50,11 @@
                   
                   
                   
+                  
+                  
                   D[
+                    
+                    
                     
                     
                     
@@ -78,10 +82,10 @@
                     '',
                     'read 0 4',
                     'write 0x80000000 4 0xff',
-                    'write 0x80000000 4 0x55',
+                    'write 0x80000000 4 0xaa',
                     'write 0x80000000 4 0x00',
                     'read 0x80040000 32',
-                    'write 0x80000000 4 0xaa',
+                    'write 0x80000000 4 0x55',
                     'exit']],
                 ['HistorySize',0x40],
                 [
@@ -147,7 +151,7 @@
               'Attr':[
                 ['LogLevel',0x1],
                 ['Transport','udpedcl'],
-                ['seq_cnt',0x1]]}]},
+                ['seq_cnt',0x2]]}]},
         {
           'Class':'ElfLoaderServiceClass',
           'Instances':[

@@ -11,8 +11,8 @@ create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_
 
 ## Switches
 
-set_property PACKAGE_PIN J15 [get_ports {i_int_clkrf}]
-set_property IOSTANDARD LVCMOS33 [get_ports {i_int_clkrf}]
+set_property PACKAGE_PIN J15 [get_ports {i_dip[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {i_dip[0]}]
 set_property PACKAGE_PIN L16 [get_ports {i_dip[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {i_dip[1]}]
 set_property PACKAGE_PIN M13 [get_ports {i_dip[2]}]
@@ -91,10 +91,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports i_rst]
 #set_property PACKAGE_PIN M17 [get_ports {i_etxd[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {i_etxd[3]}]
 
-set_property PACKAGE_PIN C4 [get_ports i_uart1_rd]
-set_property IOSTANDARD LVCMOS33 [get_ports i_uart1_rd]
-set_property PACKAGE_PIN D4 [get_ports o_uart1_td]
-set_property IOSTANDARD LVCMOS33 [get_ports o_uart1_td]
+#set_property PACKAGE_PIN C4 [get_ports i_uart1_rd]
+#set_property IOSTANDARD LVCMOS33 [get_ports i_uart1_rd]
+#set_property PACKAGE_PIN D4 [get_ports o_uart1_td]
+#set_property IOSTANDARD LVCMOS33 [get_ports o_uart1_td]
 
 ##SMSC Ethernet PHY
 set_property PACKAGE_PIN C9 [get_ports o_emdc]
@@ -105,7 +105,6 @@ set_property PACKAGE_PIN B3 [get_ports o_erstn]
 set_property IOSTANDARD LVCMOS33 [get_ports o_erstn]
 set_property PACKAGE_PIN D9 [get_ports i_erx_dv]
 set_property IOSTANDARD LVCMOS33 [get_ports i_erx_dv]
-
 set_property PACKAGE_PIN C10 [get_ports i_erx_er]
 set_property IOSTANDARD LVCMOS33 [get_ports i_erx_er]
 set_property PACKAGE_PIN C11 [get_ports {i_erxd[0]}]
@@ -118,7 +117,7 @@ set_property PACKAGE_PIN A10 [get_ports {o_etxd[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {o_etxd[0]}]
 set_property PACKAGE_PIN A8 [get_ports {o_etxd[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {o_etxd[1]}]
-set_property PACKAGE_PIN D5 [get_ports eth_refclk]
-set_property IOSTANDARD LVCMOS33 [get_ports eth_refclk]
+set_property PACKAGE_PIN D5 [get_ports o_erefclk]
+set_property IOSTANDARD LVCMOS33 [get_ports o_erefclk]
 set_property -dict { PACKAGE_PIN B8    IOSTANDARD LVCMOS33 } [get_ports { i_emdint }]; #IO_L12P_T1_MRCC_16 Sch=eth_intn
 
