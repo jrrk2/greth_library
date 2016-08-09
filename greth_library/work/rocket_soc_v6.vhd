@@ -83,7 +83,8 @@ entity rocket_soc is port
    
   --! Ethernet MAC PHY interface signals
   --! @{
-  i_gmiiclk_p : in    std_ulogic;
+  eth_refclk  : out   std_ulogic; -- RMII clock out
+  i_gmiiclk_p : in    std_ulogic; -- GMII clock in
   i_gmiiclk_n : in    std_ulogic;
   o_egtx_clk  : out   std_ulogic;
   i_etx_clk   : in    std_ulogic;
@@ -93,7 +94,7 @@ entity rocket_soc is port
   i_erx_er    : in    std_ulogic;
   i_erx_col   : in    std_ulogic;
   i_erx_crs   : in    std_ulogic;
-  i_emdint    : in std_ulogic;
+  i_emdint    : in    std_ulogic;
   o_etxd      : out   std_logic_vector(3 downto 0);
   o_etx_en    : out   std_ulogic;
   o_etx_er    : out   std_ulogic;
@@ -175,9 +176,10 @@ begin
   dipx : for i in 1 to 3 generate
      idipz  : ibuf_tech generic map(CFG_PADTECH) port map (ib_dip(i), i_dip(i));
   end generate;
+  diffclk: if CFG_RMII = 0 generate 
   igbebuf0 : igdsbuf_tech generic map (CFG_PADTECH) port map (
             i_gmiiclk_p, i_gmiiclk_n, ib_gmiiclk);
-
+  end generate;
 
   --! @todo all other in/out signals via buffers:
 
@@ -194,7 +196,9 @@ begin
     i_clk_adc   => ib_clk_adc,
     o_clk_bus   => wClkBus,
     o_clk_adc   => wClkAdc,
-    o_locked    => wPllLocked
+    o_locked    => wPllLocked,
+    o_clk_50_quad => eth_refclk,
+    o_clk_50     => eth_i.rmii_clk
   );
   wSysReset <= ib_rst or not wPllLocked;
 
@@ -342,33 +346,25 @@ end generate;
       slv_cfg(CFG_NASTI_SLAVE_FSE_GPS) <= nasti_slave_config_none;
       axiso(CFG_NASTI_SLAVE_FSE_GPS) <= nasti_slave_out_none;
 
-  --! Gigabit clock phase rotator with buffers
-  clkrot90 : clkp90_tech  generic map (
-    tech    => CFG_FABTECH,
-    freq    => 125000   -- KHz = 125 MHz
-  ) port map (
-    i_rst    => wReset,
-    i_clk    => ib_gmiiclk,
-    o_clk    => eth_i.gtx_clk,
-    o_clkp90 => eth_i.tx_clk_90,
-    o_clk2x  => open, -- used in gbe 'io_ref'
-    o_lock   => open
-  );
-
   --! @brief Ethernet MAC with the AXI4 interface.
   --! @details Map address:
   --!          0x80040000..0x8007ffff (256 KB total)
   --!          EDCL IP: 192.168.0.51 = C0.A8.00.33
+  eth0_rmii_ena1 : if CFG_RMII = 1 generate 
+    eth_i.rx_crs <= i_erx_dv;
+  end generate;
+  eth0_rmii_ena0 : if CFG_RMII = 0 generate -- plain MII
+    eth_i.rx_dv <= i_erx_dv;
+    eth_i.rx_crs <= i_erx_crs;
+  end generate;
   eth0_ena : if CFG_ETHERNET_ENABLE generate 
     eth_i.tx_clk <= i_etx_clk;
     eth_i.rx_clk <= i_erx_clk;
-    eth_i.rxd <= i_erxd;
-    eth_i.rx_dv <= i_erx_dv;
     eth_i.rx_er <= i_erx_er;
     eth_i.rx_col <= i_erx_col;
-    eth_i.rx_crs <= i_erx_crs;
+    eth_i.rxd <= i_erxd;
     eth_i.mdint <= i_emdint;
-    
+
     mac0 : grethaxi generic map (
       xslvindex => CFG_NASTI_SLAVE_ETHMAC,
       xmstindex => CFG_NASTI_MASTER_ETHMAC,
@@ -376,7 +372,7 @@ end generate;
       xmask => 16#FFFC0#,
       xirq => CFG_IRQ_ETHMAC,
       memtech => CFG_MEMTECH,
-      mdcscaler => 60,  --! System Bus clock in MHz
+      mdcscaler => 50,  --! System Bus clock in MHz
       enable_mdio => 1,
       fifosize => 16,
       nsync => 1,

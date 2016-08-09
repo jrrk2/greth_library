@@ -47,7 +47,13 @@
                   
                   
                   
+                  
+                  
+                  
                   D[
+                    
+                    
+                    
                     
                     
                     
@@ -58,7 +64,7 @@
                     D',
                     'csr MTIME',
                     'read 0xfffff004 128',
-                    'write 0x80000000 4 0xaa',
+                    'write 0x80000000 4 0xas',
                     'read_csr CPUID',
                     'write 0x80000000 4 0aa',
                     'read 0xfffff000 128',
@@ -75,6 +81,7 @@
                     'write 0x80000000 4 0x55',
                     'write 0x80000000 4 0x00',
                     'read 0x80040000 32',
+                    'write 0x80000000 4 0xaa',
                     'exit']],
                 ['HistorySize',0x40],
                 [

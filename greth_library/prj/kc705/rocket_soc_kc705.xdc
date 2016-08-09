@@ -34,9 +34,9 @@ set_property PACKAGE_PIN Y28 [get_ports {i_dip[3]}]
 
 
 #UART interface
-set_property PACKAGE_PIN K23 [get_ports i_uart1_ctsn]
+#set_property PACKAGE_PIN K23 [get_ports i_uart1_ctsn]
 set_property PACKAGE_PIN M19 [get_ports i_uart1_rd]
-set_property PACKAGE_PIN L27 [get_ports o_uart1_rtsn]
+#set_property PACKAGE_PIN L27 [get_ports o_uart1_rtsn]
 set_property PACKAGE_PIN K24 [get_ports o_uart1_td]
 
 
@@ -55,7 +55,7 @@ set_property PACKAGE_PIN F16 [get_ports {o_led[7]}]
 set_property IOSTANDARD LVCMOS25 [get_ports i_clk_adc]
 # C:/work/rocket/rocket_chip/rocket_soc.ucf:39
 # The conversion of 'IOSTANDARD' constraint on 'net' object 'i_uart1_ctsn' has been applied to the port object 'i_uart1_ctsn'.
-set_property IOSTANDARD LVCMOS25 [get_ports i_uart1_ctsn]
+#set_property IOSTANDARD LVCMOS25 [get_ports i_uart1_ctsn]
 # C:/work/rocket/rocket_chip/rocket_soc.ucf:40
 # The conversion of 'IOSTANDARD' constraint on 'net' object 'i_int_clkrf' has been applied to the port object 'i_int_clkrf'.
 set_property IOSTANDARD LVCMOS25 [get_ports {i_int_clkrf}]
@@ -101,7 +101,7 @@ set_property IOSTANDARD LVCMOS25 [get_ports {o_led[6]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {o_led[7]}]
 # C:/work/rocket/rocket_chip/rocket_soc.ucf:55
 # The conversion of 'IOSTANDARD' constraint on 'net' object 'o_uart1_rtsn' has been applied to the port object 'o_uart1_rtsn'.
-set_property IOSTANDARD LVCMOS25 [get_ports o_uart1_rtsn]
+#set_property IOSTANDARD LVCMOS25 [get_ports o_uart1_rtsn]
 # C:/work/rocket/rocket_chip/rocket_soc.ucf:56
 # The conversion of 'IOSTANDARD' constraint on 'net' object 'o_uart1_td' has been applied to the port object 'o_uart1_td'.
 set_property IOSTANDARD LVCMOS25 [get_ports o_uart1_td]
@@ -110,7 +110,7 @@ set_property IOSTANDARD LVCMOS25 [get_ports o_uart1_td]
 set_property PACKAGE_PIN G8 [get_ports i_gmiiclk_p]
 set_property PACKAGE_PIN G7 [get_ports i_gmiiclk_n]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets -of [get_pins igbebuf0/xk7.x1/x1/O]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets -of [get_pins diffclk.igbebuf0/xk7.x1/x1/O]]
 
 set_property PACKAGE_PIN J21 [get_ports io_emdio]
 set_property IOSTANDARD LVCMOS25 [get_ports io_emdio]
@@ -154,52 +154,3 @@ set_property PACKAGE_PIN M29 [get_ports {o_etxd[2]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {o_etxd[2]}]
 set_property PACKAGE_PIN L28 [get_ports {o_etxd[3]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {o_etxd[3]}]
-
-
-# ADC samples:
-set_property PACKAGE_PIN AH30 [get_ports {i_gps_I[1]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {i_gps_I[1]}]
-set_property PACKAGE_PIN AE28 [get_ports {i_gps_I[0]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {i_gps_I[0]}]
-set_property PACKAGE_PIN AD26 [get_ports {i_gps_Q[1]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {i_gps_Q[1]}]
-set_property PACKAGE_PIN AG28 [get_ports {i_gps_Q[0]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {i_gps_Q[0]}]
-set_property PACKAGE_PIN AE30 [get_ports i_gps_ld]
-set_property IOSTANDARD LVCMOS25 [get_ports i_gps_ld]
-set_property PACKAGE_PIN AF30 [get_ports i_glo_ld]
-set_property IOSTANDARD LVCMOS25 [get_ports i_glo_ld]
-
-# RF control:
-set_property PACKAGE_PIN AE29 [get_ports o_max_sclk]
-set_property IOSTANDARD LVCMOS25 [get_ports o_max_sclk]
-set_property PACKAGE_PIN AD29 [get_ports o_max_sdata]
-set_property IOSTANDARD LVCMOS25 [get_ports o_max_sdata]
-set_property PACKAGE_PIN AB29 [get_ports {o_max_ncs[1]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {o_max_ncs[1]}]
-set_property PACKAGE_PIN AF28 [get_ports {o_max_ncs[0]}]
-set_property IOSTANDARD LVCMOS25 [get_ports {o_max_ncs[0]}]
-set_property PACKAGE_PIN AH25 [get_ports i_antext_stat]
-set_property IOSTANDARD LVCMOS25 [get_ports i_antext_stat]
-set_property PACKAGE_PIN AJ23 [get_ports i_antext_detect]
-set_property IOSTANDARD LVCMOS25 [get_ports i_antext_detect]
-set_property PACKAGE_PIN AG25 [get_ports o_antext_ena]
-set_property IOSTANDARD LVCMOS25 [get_ports o_antext_ena]
-set_property PACKAGE_PIN AC26 [get_ports o_antint_contr]
-set_property IOSTANDARD LVCMOS25 [get_ports o_antint_contr]
-
-
-# new tap controller
-# comment this if using xilinx tap
-# ahbjtag.vhd line 107:
-# tech => tech (xilinx tap)
-# tech => 0 (asic tap)
-#NET "TMS" LOC = AE21;
-#NET "TMS" IOSTANDARD = LVCMOS25;
-#NET "TCK" LOC = AD21;
-#NET "TCK" IOSTANDARD = LVCMOS25;
-#NET "TDO" LOC = AK25;
-#NET "TDO" IOSTANDARD = LVCMOS25;
-#NET "TDI" LOC = AJ24;
-#NET "TDI" IOSTANDARD = LVCMOS25;
-#NET "TCK" CLOCK_DEDICATED_ROUTE = FALSE;

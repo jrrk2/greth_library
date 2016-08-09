@@ -83,22 +83,24 @@ entity rocket_soc is port
    
   --! Ethernet MAC PHY interface signals
   --! @{
+  eth_refclk  : out   std_ulogic; -- RMII clock out
+  i_gmiiclk_p : in    std_ulogic; -- GMII clock in
+  i_gmiiclk_n : in    std_ulogic;
   o_egtx_clk  : out   std_ulogic;
   i_etx_clk   : in    std_ulogic;
   i_erx_clk   : in    std_ulogic;
   i_erxd      : in    std_logic_vector(3 downto 0);
-  eth_crsdv    : in    std_ulogic;
-  eth_rxerr    : in    std_ulogic;
+  i_erx_dv    : in    std_ulogic;
+  i_erx_er    : in    std_ulogic;
   i_erx_col   : in    std_ulogic;
   i_erx_crs   : in    std_ulogic;
-  i_emdint    : in std_ulogic;
+  i_emdint    : in    std_ulogic;
   o_etxd      : out   std_logic_vector(3 downto 0);
   o_etx_en    : out   std_ulogic;
   o_etx_er    : out   std_ulogic;
   o_emdc      : out   std_ulogic;
   io_emdio    : inout std_logic;
-  o_erstn     : out   std_ulogic;
-  eth_refclk  : out   std_ulogic
+  o_erstn     : out   std_ulogic
 );
   --! @}
 
@@ -117,6 +119,7 @@ architecture arch_rocket_soc of rocket_soc is
   signal ib_sclk_n  : std_logic;
   signal ib_clk_adc : std_logic;
   signal ib_dip     : std_logic_vector(3 downto 0);
+  signal ib_gmiiclk : std_logic;
   --! @}
 
   signal wSysReset  : std_ulogic; -- Internal system reset. MUST NOT USED BY DEVICES.
@@ -172,6 +175,10 @@ begin
   idip0  : ibuf_tech generic map(CFG_PADTECH) port map (ib_dip(0), i_int_clkrf);
   dipx : for i in 1 to 3 generate
      idipz  : ibuf_tech generic map(CFG_PADTECH) port map (ib_dip(i), i_dip(i));
+  end generate;
+  diffclk: if CFG_RMII = 0 generate 
+  igbebuf0 : igdsbuf_tech generic map (CFG_PADTECH) port map (
+            i_gmiiclk_p, i_gmiiclk_n, ib_gmiiclk);
   end generate;
 
   --! @todo all other in/out signals via buffers:
@@ -281,7 +288,7 @@ end generate;
     cfg   => slv_cfg(CFG_NASTI_SLAVE_GPIO),
     i     => axisi,
     o     => axiso(CFG_NASTI_SLAVE_GPIO),
-    i_dip => ib_dip(3 downto 1) & (ib_dip(0) xor eth_rxerr),
+    i_dip => ib_dip,
     o_led => o_led
   ); 
  
@@ -343,15 +350,21 @@ end generate;
   --! @details Map address:
   --!          0x80040000..0x8007ffff (256 KB total)
   --!          EDCL IP: 192.168.0.51 = C0.A8.00.33
+  eth0_rmii_ena1 : if CFG_RMII = 1 generate 
+    eth_i.rx_crs <= i_erx_dv;
+  end generate;
+  eth0_rmii_ena0 : if CFG_RMII = 0 generate -- plain MII
+    eth_i.rx_dv <= i_erx_dv;
+    eth_i.rx_crs <= i_erx_crs;
+  end generate;
   eth0_ena : if CFG_ETHERNET_ENABLE generate 
     eth_i.tx_clk <= i_etx_clk;
     eth_i.rx_clk <= i_erx_clk;
-    eth_i.rxd <= i_erxd;
-    eth_i.rx_er <= eth_rxerr;
+    eth_i.rx_er <= i_erx_er;
     eth_i.rx_col <= i_erx_col;
-    eth_i.rx_crs <= eth_crsdv;
+    eth_i.rxd <= i_erxd;
     eth_i.mdint <= i_emdint;
-   
+
     mac0 : grethaxi generic map (
       xslvindex => CFG_NASTI_SLAVE_ETHMAC,
       xmstindex => CFG_NASTI_MASTER_ETHMAC,
