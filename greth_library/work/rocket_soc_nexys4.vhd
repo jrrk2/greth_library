@@ -49,10 +49,6 @@ entity rocket_soc is port
 ( 
   --! Input reset. Active High. Usually assigned to button "Center".
   i_rst     : in std_logic;
-  --! Differential clock (LVDS) positive signal.
-  i_sclk_p  : in std_logic;
-  --! Differential clock (LVDS) negative signal.
-  i_sclk_n  : in std_logic;
   --! DIP switch.
   i_dip     : in std_logic_vector(3 downto 0);
   --! LEDs.
@@ -75,7 +71,10 @@ entity rocket_soc is port
   o_etx_er    : out   std_ulogic;
   o_emdc      : out   std_ulogic;
   io_emdio    : inout std_logic;
-  o_erstn     : out   std_ulogic
+  o_erstn     : out   std_ulogic;
+  wPllLocked  : in std_ulogic; -- PLL status signal. 0=Unlocked; 1=locked.
+  i_clk50_quad : in std_ulogic;
+  i_clk50    : in std_ulogic
 );
   --! @}
 
@@ -89,9 +88,6 @@ architecture arch_rocket_soc of rocket_soc is
   --!          through the dedicated buffere modules. For FPGA they are implemented
   --!          as an empty devices but ASIC couldn't be made without buffering.
   --! @{
-  signal ib_rst     : std_logic;
-  signal ib_sclk_p  : std_logic;
-  signal ib_sclk_n  : std_logic;
   signal ib_dip     : std_logic_vector(3 downto 0);
   signal ib_gmiiclk : std_logic;
   --! @}
@@ -102,7 +98,6 @@ architecture arch_rocket_soc of rocket_soc is
   signal soft_rst   : std_logic; -- reset from exteranl debugger
   signal bus_nrst   : std_ulogic; -- Global reset and Soft Reset active LOW
   signal wClkBus    : std_ulogic; -- bus clock from the internal PLL (100MHz virtex6/40MHz Spartan6)
-  signal wPllLocked : std_ulogic; -- PLL status signal. 0=Unlocked; 1=locked.
 
   --! Arbiter is switching only slaves output signal, data from noc
   --! is connected to all slaves and to the arbiter itself.
@@ -121,9 +116,6 @@ architecture arch_rocket_soc of rocket_soc is
 begin
 
   --! PAD buffers:
-  irst0   : ibuf_tech generic map(CFG_PADTECH) port map (ib_rst, i_rst);
-  iclkp0  : ibuf_tech generic map(CFG_PADTECH) port map (ib_sclk_p, i_sclk_p);
-  iclkn0  : ibuf_tech generic map(CFG_PADTECH) port map (ib_sclk_n, i_sclk_n);
   dipx : for i in 0 to 3 generate
      idipz  : ibuf_tech generic map(CFG_PADTECH) port map (ib_dip(i), i_dip(i));
   end generate;
@@ -132,23 +124,10 @@ begin
             i_gmiiclk_p, i_gmiiclk_n, ib_gmiiclk);
   end generate;
 
-  --! @todo all other in/out signals via buffers:
-
-  ------------------------------------
-  -- @brief Internal PLL device instance.
-  pll0 : SysPLL_tech generic map (
-    tech => CFG_FABTECH,
-    tmode_always_ena => CFG_TESTMODE_ON
-  ) port map (
-    i_reset     => ib_rst,
-    i_clkp	     => ib_sclk_p,
-    i_clkn	     => ib_sclk_n,
-    o_clk_bus   => wClkBus,
-    o_locked    => wPllLocked,
-    o_clk_50_quad => o_erefclk,
-    o_clk_50     => eth_i.rmii_clk
-  );
-  wSysReset <= ib_rst or not wPllLocked;
+wClkBus <= i_clk50;
+o_erefclk <= i_clk50_quad;
+eth_i.rmii_clk <= i_clk50; 
+wSysReset <= i_rst or not wPllLocked;
 
   ------------------------------------
   --! @brief System Reset device instance.
