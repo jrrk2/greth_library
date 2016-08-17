@@ -50,7 +50,7 @@ entity rocket_soc is port
   --! Input reset. Active High. Usually assigned to button "Center".
   i_rst     : in std_logic;
   --! DIP switch.
-  i_dip     : in std_logic_vector(3 downto 0);
+  i_dip     : in std_logic_vector(7 downto 0);
   --! LEDs.
   o_led     : out std_logic_vector(7 downto 0);
   --! Ethernet MAC PHY interface signals

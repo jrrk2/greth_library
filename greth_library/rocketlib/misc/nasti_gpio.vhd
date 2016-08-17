@@ -27,7 +27,7 @@ entity nasti_gpio is
     cfg  : out nasti_slave_config_type;
     i    : in  nasti_slave_in_type;
     o    : out nasti_slave_out_type;
-    i_dip : in std_logic_vector(3 downto 0);
+    i_dip : in std_logic_vector(7 downto 0);
     o_led : out std_logic_vector(7 downto 0)
   );
 end; 
@@ -131,7 +131,7 @@ begin
 
     o <= functionAxi4Output(r.bank_axi, rdata);
 
-    v.bank0.dip(3 downto 0) := i_dip;
+    v.bank0.dip(7 downto 0) := i_dip;
     
     if nrst = '0' then
         v := RESET_VALUE;

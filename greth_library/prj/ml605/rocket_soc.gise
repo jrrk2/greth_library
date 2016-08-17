@@ -102,13 +102,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1470744299" xil_pn:in_ck="-6396078830211481224" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="751545506454801243" xil_pn:start_ts="1470744197">
+    <transform xil_pn:end_ts="1471450882" xil_pn:in_ck="-6396078830211481224" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="751545506454801243" xil_pn:start_ts="1471450837">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.lso"/>
@@ -122,28 +120,24 @@
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1470740091" xil_pn:in_ck="-1708771722789316221" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-1953744653408572464" xil_pn:start_ts="1470740091">
+    <transform xil_pn:end_ts="1471449299" xil_pn:in_ck="-1708771722789316221" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-1953744653408572464" xil_pn:start_ts="1471449299">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1470744310" xil_pn:in_ck="2378332610925211253" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-6102622609061505311" xil_pn:start_ts="1470744299">
+    <transform xil_pn:end_ts="1471450889" xil_pn:in_ck="2378332610925211253" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-6102622609061505311" xil_pn:start_ts="1471450882">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.bld"/>
       <outfile xil_pn:name="rocket_soc.ngd"/>
       <outfile xil_pn:name="rocket_soc_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1470744402" xil_pn:in_ck="5269680984856645782" xil_pn:name="TRANEXT_map_virtex6" xil_pn:prop_ck="-1488369781660435355" xil_pn:start_ts="1470744310">
+    <transform xil_pn:end_ts="1471450958" xil_pn:in_ck="5269680984856645782" xil_pn:name="TRANEXT_map_virtex6" xil_pn:prop_ck="-1488369781660435355" xil_pn:start_ts="1471450889">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.pcf"/>
       <outfile xil_pn:name="rocket_soc_map.map"/>
@@ -154,10 +148,9 @@
       <outfile xil_pn:name="rocket_soc_summary.xml"/>
       <outfile xil_pn:name="rocket_soc_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1470744467" xil_pn:in_ck="-6569445894717692337" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-8713009098063268188" xil_pn:start_ts="1470744402">
+    <transform xil_pn:end_ts="1471451019" xil_pn:in_ck="-6569445894717692337" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-8713009098063268188" xil_pn:start_ts="1471450958">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.ncd"/>
       <outfile xil_pn:name="rocket_soc.pad"/>
@@ -169,10 +162,9 @@
       <outfile xil_pn:name="rocket_soc_pad.txt"/>
       <outfile xil_pn:name="rocket_soc_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1470744513" xil_pn:in_ck="8548068015908362799" xil_pn:name="TRANEXT_bitFile_virtex6" xil_pn:prop_ck="8799862395714727328" xil_pn:start_ts="1470744467">
+    <transform xil_pn:end_ts="1471451060" xil_pn:in_ck="8548068015908362799" xil_pn:name="TRANEXT_bitFile_virtex6" xil_pn:prop_ck="8799862395714727328" xil_pn:start_ts="1471451019">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.bgn"/>
       <outfile xil_pn:name="rocket_soc.bit"/>
@@ -181,12 +173,9 @@
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1470740951" xil_pn:in_ck="-7453422899901679726" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1470740934">
-      <status xil_pn:value="AbortedRun"/>
+    <transform xil_pn:end_ts="1471451019" xil_pn:in_ck="-7453422899901679726" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1471451005">
+      <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
       <outfile xil_pn:name="rocket_soc.twr"/>
       <outfile xil_pn:name="rocket_soc.twx"/>
